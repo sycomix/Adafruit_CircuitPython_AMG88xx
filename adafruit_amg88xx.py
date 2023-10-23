@@ -86,9 +86,7 @@ _THERMISTOR_CONVERSION = .0625
 def _signed_12bit_to_float(val):
     #take first 11 bits as absolute val
     abs_val = (val & 0x7FF)
-    if val & 0x800:
-        return 0 - float(abs_val)
-    return float(abs_val)
+    return 0 - float(abs_val) if val & 0x800 else float(abs_val)
 
 def _twos_comp_to_float(val):
     val &= 0xfff
